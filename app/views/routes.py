@@ -104,3 +104,18 @@ def edit_redflag_comment(redflag_id):
                 }]
                 })
       
+@app.route('/api/v1/red-flags/<int:redflag_id>', methods=['DELETE'])
+def delete_redflag(redflag_id):
+    # deleting a redflag
+    if redflag_id == 0 or redflag_id > len(incident_list):
+        return jsonify({"message": "redflag record out of range"}), 404
+    for incident in incident_list:
+        if incident.id == redflag_id:
+            incident_list.remove(incident)
+    return jsonify({
+        "status": 200,
+        "data":[{
+        "id": redflag_id,
+        "message": "red-flag record has been deleted"
+        }]
+        })

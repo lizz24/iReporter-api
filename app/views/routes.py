@@ -51,5 +51,20 @@ def get_redflags():
              "status": 404
              })
 
-
+@app.route('/api/v1/red-flags/<int:redflag_id>', methods=['GET'])
+def get_single_redflag(redflag_id):
+    # function for getting a single redflag
+    redflag = []
+    incident = incident_list[redflag_id - 1]
+    redflag.append(incident.get_incident())
+    if redflag_id < 1:
+        return jsonify({
+            "error": "There are no redflags",
+            "status": 400
+            })
+    else:
+        return jsonify({
+                "data": redflag,
+                "status": 200
+                })
 

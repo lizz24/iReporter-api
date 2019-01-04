@@ -68,3 +68,39 @@ def get_single_redflag(redflag_id):
                 "status": 200
                 })
 
+@app.route('/api/v1/red-flags/<int:redflag_id>/location', methods=['PATCH'])
+def edit_redflag_location(redflag_id):
+    # function for editing redflag location
+    if redflag_id == 0 or redflag_id > len(incident_list):
+        return jsonify({"status": 404, "message": "Redflag record out of range"})
+    data = (request.get_json())
+    for incident in incident_list:
+        if int(incident.id) == int(redflag_id):
+            incident.location = data['location']
+            return jsonify({
+                "status": 200,
+                "data": [{
+                "id": redflag_id,
+                "message": "Updated red-flag record’s location"
+                }]
+                })
+        
+
+
+@app.route('/api/v1/red-flags/<int:redflag_id>/comment', methods=['PATCH'])
+def edit_redflag_comment(redflag_id):
+    # function for editing redflag comment
+    if redflag_id == 0 or redflag_id > len(incident_list):
+        return jsonify({"message": "The redflag record out of range"}), 404
+    data = (request.get_json())
+    for incident in incident_list:
+        if int(incident.id) == int(redflag_id):
+            incident.comment = data['comment']
+            return jsonify({
+                "status": 200,
+                "data": [{
+                "id": redflag_id,
+                "message": "Updated red-flag record’s comment"
+                }]
+                })
+      

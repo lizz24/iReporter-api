@@ -8,6 +8,10 @@ app = Flask(__name__)
 
 incident_list = []
 
+@app.route('/', methods=['GET'])
+def home():
+    return "WELCOME TO IREPORTER"
+
 @app.route('/api/v1/red-flags', methods=['POST'])
 def create_redflag():
     # function for creating a red-flag

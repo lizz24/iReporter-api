@@ -5,4 +5,4 @@ omit =
     *.pyc
     */home/travis/virtualenv/*
     */jinja2/*
-    */site-packages/*
+    */site-packages/marshmallow/*

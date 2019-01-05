@@ -1,0 +1,8 @@
+[report]
+omit =
+    */python?.?/*
+    */__pycache__/*
+    *.pyc
+    */home/travis/virtualenv/*
+    */jinja2/*
+    */site-packages/*

@@ -1,16 +1,15 @@
 class Incident:
     # incident class
-    def __init__(self, id, createdOn, createdBy, type, location,
-                 status, Images, Videos, comment):
-        self.id = id
-        self.createdOn = createdOn
-        self.createdBy = createdBy
-        self.type = type
-        self.location = location
-        self.status = status
-        self.Images = Images
-        self.Videos = Videos
-        self.comment = comment
+    def __init__(self, *args):
+        self.id = args[0]
+        self.createdOn = args[1]
+        self.createdBy = args[2]
+        self.type = args[3]
+        self.location = args[4]
+        self.status = args[5]
+        self.Images = args[6]
+        self.Videos = args[7]
+        self.comment = args[8]
 
     def get_incident(self):
         return {

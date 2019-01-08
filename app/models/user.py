@@ -1,18 +1,17 @@
 class User:
     # user class
-    def __init__(self, id, firstname, lastname, othernames, email,
-                 phoneNumber, username, registered, isAdmin, password, password_confirm):
-        self.id = id
-        self.firstname = firstname
-        self.lastname = lastname
-        self.othernames = othernames
-        self.email = email
-        self.phoneNumber = phoneNumber
-        self.username = username
-        self.registered = registered
-        self.isAdmin = isAdmin
-        self.password = password
-        self.password_confirm = password_confirm
+    def __init__(self, *args):
+        self.id = args[0]
+        self.firstname = args[1]
+        self.lastname = args[2]
+        self.othernames = args[3]
+        self.email = args[4]
+        self.phoneNumber = args[5]
+        self.username = args[6]
+        self.registered = args[7]
+        self.isAdmin = args[8]
+        self.password = args[9]
+        self.password_confirm = args[10]
 
     def get_user_details(self):
         # getting one user

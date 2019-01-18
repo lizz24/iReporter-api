@@ -8,7 +8,7 @@ class test_redflag(unittest.TestCase):
         self.client = app.test_client()
 
     def test_get_redflags(self):
-        # Tests that the end point fetches all records
+        """ Tests that the end point fetches all records"""
         response = self.client.get('/api/v1/red-flags',
                                    content_type='application/json')
         self.assertEqual(response.status_code, 200)

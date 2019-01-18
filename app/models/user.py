@@ -1,5 +1,5 @@
 class User:
-    # user class
+    """ user class"""
     def __init__(self, *args):
         self.id = args[0]
         self.firstname = args[1]
@@ -14,7 +14,7 @@ class User:
         self.password_confirm = args[10]
 
     def get_user_details(self):
-        # getting one user
+        """ getting one user"""
         return {
             "id": self.id,
             "firstname": self.firstname,

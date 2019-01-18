@@ -1,5 +1,5 @@
 class Incident:
-    # incident class
+  
     def __init__(self, *args):
         self.id = args[0]
         self.createdOn = args[1]

@@ -14,7 +14,7 @@ class test_redflag(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_get_single_redflag(self):
-            # Tests that the end point returns a single record
+            """ Tests that the end point returns a single record"""
             redflag_details = {
                         "Images": "images.jpg",
                         "Videos": "videos.mp4",

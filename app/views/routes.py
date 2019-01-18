@@ -14,7 +14,7 @@ def home():
 
 @app.route('/api/v1/red-flags', methods=['POST'])
 def create_redflag():
-    # function for creating a red-flag
+    """ function for creating a red-flag"""
     data, errors = IncidentSchema().load(request.get_json())
     
     if errors:
@@ -42,7 +42,7 @@ def create_redflag():
 
 @app.route('/api/v1/red-flags', methods=['GET'])
 def get_redflags():
-    # getting all red-flags
+    """ getting all red-flags"""
     Redflags = [incident.get_incident() for incident in incident_list]
     if len(incident_list) > 0:
      return jsonify({
@@ -57,7 +57,7 @@ def get_redflags():
 
 @app.route('/api/v1/red-flags/<int:redflag_id>', methods=['GET'])
 def get_single_redflag(redflag_id):
-    # function for getting a single redflag
+    """ function for getting a single redflag"""
     redflag = []
     incident = incident_list[redflag_id - 1]
     redflag.append(incident.get_incident())
@@ -74,7 +74,7 @@ def get_single_redflag(redflag_id):
 
 @app.route('/api/v1/red-flags/<int:redflag_id>/location', methods=['PATCH'])
 def edit_redflag_location(redflag_id):
-    # function for editing redflag location
+    """ function for editing redflag location"""
     if redflag_id == 0 or redflag_id > len(incident_list):
         return jsonify({"status": 404, "message": "Redflag record out of range"})
     data = (request.get_json())
@@ -93,7 +93,7 @@ def edit_redflag_location(redflag_id):
 
 @app.route('/api/v1/red-flags/<int:redflag_id>/comment', methods=['PATCH'])
 def edit_redflag_comment(redflag_id):
-    # function for editing redflag comment
+    """ function for editing redflag comment"""
     if redflag_id == 0 or redflag_id > len(incident_list):
         return jsonify({"message": "The redflag record out of range"}), 404
     data = (request.get_json())
@@ -110,7 +110,7 @@ def edit_redflag_comment(redflag_id):
       
 @app.route('/api/v1/red-flags/<int:redflag_id>', methods=['DELETE'])
 def delete_redflag(redflag_id):
-    # deleting a redflag
+    """ deleting a redflag"""
     if redflag_id == 0 or redflag_id > len(incident_list):
         return jsonify({"message": "redflag record out of range"}), 404
     for incident in incident_list:

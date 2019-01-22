@@ -1,4 +1,4 @@
-from app.views.routes import app
+from app.views.incidents import app
 
 
 if __name__ == "__main__":

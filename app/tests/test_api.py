@@ -117,38 +117,7 @@ class test_redflag(unittest.TestCase):
         self.assertEqual(data["data"][0]["message"], 
                          "red-flag record id has been deleted")
 
-    def test_delete_redflag_with_id_not_found(self): 
-            redflag_details = {
-                        "id": 1,
-                        "createdOn": "Date",  
-                        "createdBy": 1, 
-                        "type": "red-flags",       
-                        "location": "Nlat:2375812 long:4556",   
-                        "status": "draft",     
-                        "comment": "delete this flag",
-                        "Images": "images",
-                        "Videos": "videos"
-                }
-            self.client.post('/api/v1/red-flags',
-                             content_type='application/json',
-                             json=redflag_details)
-            redflag_details = {
-                    "id": 1,
-                    "createdOn": "Date",  
-                    "createdBy": 1, 
-                    "type": "red-flags",       
-                    "location": "lat:237 long:455",   
-                    "status": "Rejected",     
-                    "comment": "delete this flag",
-                    "Images": "images",
-                    "Videos": "videos"
-                    }
-            response = self.client.delete('/api/v1/red-flags/10',
-                                          json=redflag_details)
-            data = json.loads(response.data)
-            self.assertEqual(response.status_code, 404)
-            self.assertEqual(data["error"], 
-                             "redflag id doesnot exist")
+    
                          
     def test_wrong_url(self):
         redflag_details = {
@@ -270,15 +239,4 @@ class test_redflag(unittest.TestCase):
             self.assertEqual(response.status_code, 400)
             self.assertEqual(data["error"], "No recorded redflags to display, please create redflag")
            
-    def test_get_empty_redflaglist(self):
-            """ Tests that the end point returns a single record"""
-            redflag_details = {
-                
-            }
-            self.client.post('/api/v1/red-flags',
-                             json=redflag_details)
-            response = self.client.get('/api/v1/red-flags',
-                                       content_type='application/json')
-            data = json.loads(response.data)
-            self.assertEqual(response.status_code, 404)
-            self.assertEqual(data["error"], "Empty redflag list")
+    

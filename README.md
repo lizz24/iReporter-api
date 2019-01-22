@@ -1,7 +1,7 @@
 # iReporter-api
 
 [![Build Status](https://travis-ci.org/lizz24/iReporter-api.svg?branch=develop)](https://travis-ci.org/lizz24/iReporter-api)
-[![Coverage Status](https://coveralls.io/repos/github/lizz24/iReporter-api/badge.svg?branch=develop)](https://coveralls.io/github/lizz24/iReporter-api?branch=develop)
+[![Coverage Status](https://coveralls.io/repos/github/lizz24/iReporter-api/badge.svg)](https://coveralls.io/github/lizz24/iReporter-api)
 [![Maintainability](https://api.codeclimate.com/v1/badges/d74c2d36c966d197aec2/maintainability)](https://codeclimate.com/github/lizz24/iReporter-api/maintainability)
  > iReporter enables any/every citizen to bring any form of corruption to the notice
  

@@ -11,7 +11,7 @@ class test_redflag(unittest.TestCase):
         """ Tests that the end point fetches all records"""
         response = self.client.get('/api/v1/red-flags',
                                    content_type='application/json')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 404)
 
     def test_get_single_redflag(self):
             """ Tests that the end point returns a single record"""

@@ -1,6 +1,6 @@
 import unittest
 import json
-from app.views.routes import app
+from app.views.incidents import app
 
 
 class test_redflag(unittest.TestCase):

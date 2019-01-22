@@ -36,7 +36,7 @@ def create_redflag():
          "status": 201,
         "data": [{
         "id": id,
-        "message": "Created red-flag record"
+        "message": "Created red-flag record sucessfully"
         }]
     })
 
@@ -51,32 +51,29 @@ def get_redflags():
         })
     else:
      return jsonify({
-             "error": "no data entry for red-flags",
+             "error": "Empty redflag list",
              "status": 404
-             })
+             }), 404
 
 @app.route('/api/v1/red-flags/<int:redflag_id>', methods=['GET'])
 def get_single_redflag(redflag_id):
     """ function for getting a single redflag"""
-    redflag = []
-    incident = incident_list[redflag_id - 1]
-    redflag.append(incident.get_incident())
-    if redflag_id < 1:
-        return jsonify({
-            "error": "There are no redflags",
-            "status": 400
-            })
+    if redflag_id == 0 or redflag_id > len(incident_list):
+        return jsonify({"error": "No recorded redflags to display, please create redflag"}), 400
     else:
-        return jsonify({
-                "data": redflag,
-                "status": 200
-                })
+        redflag = []
+        incident = incident_list[redflag_id - 1]
+        redflag.append(incident.get_incident())
+    return jsonify({
+                        "data": redflag,
+                        "status": 200
+                        })
 
 @app.route('/api/v1/red-flags/<int:redflag_id>/location', methods=['PATCH'])
 def edit_redflag_location(redflag_id):
     """ function for editing redflag location"""
     if redflag_id == 0 or redflag_id > len(incident_list):
-        return jsonify({"status": 404, "message": "Redflag record out of range"})
+        return jsonify({"error": "Redflag record id doesnot exist"}), 404
     data = (request.get_json())
     for incident in incident_list:
         if int(incident.id) == int(redflag_id):
@@ -95,7 +92,7 @@ def edit_redflag_location(redflag_id):
 def edit_redflag_comment(redflag_id):
     """ function for editing redflag comment"""
     if redflag_id == 0 or redflag_id > len(incident_list):
-        return jsonify({"message": "The redflag record out of range"}), 404
+        return jsonify({"error": "The redflag record id doest exist"}), 404
     data = (request.get_json())
     for incident in incident_list:
         if int(incident.id) == int(redflag_id):
@@ -120,6 +117,25 @@ def delete_redflag(redflag_id):
         "status": 200,
         "data":[{
         "id": redflag_id,
-        "message": "red-flag record has been deleted"
+        "message": "red-flag record id has been deleted"
         }]
         })
+
+@app.errorhandler(405)
+def bad_method(error):
+    return jsonify({
+        "status": 405,
+        "data": [{             
+             "error": "The method request used is not supported for that url"
+        }]
+        })
+
+
+@app.errorhandler(404)
+def handle_bad_request(error):
+    return jsonify({
+        "status": 404,
+        "data": [{    
+             "error": "The requested input url is incorrect"
+        }]
+    })
